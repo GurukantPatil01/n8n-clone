@@ -1,0 +1,290 @@
+@import 'reactflow/dist/style.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Colors */
+    --background: #ffffff;
+    --foreground: #171717;
+
+    /* Spacing scale - generous whitespace */
+    --space-xs: 0.25rem;
+    /* 4px */
+    --space-sm: 0.5rem;
+    /* 8px */
+    --space-md: 0.75rem;
+    /* 12px */
+    --space-lg: 1rem;
+    /* 16px */
+    --space-xl: 1.5rem;
+    /* 24px */
+    --space-2xl: 2rem;
+    /* 32px */
+    --space-3xl: 3rem;
+    /* 48px */
+    --space-4xl: 4rem;
+    /* 64px */
+
+    /* Animation durations */
+    --transition-fast: 150ms;
+    --transition-base: 200ms;
+    --transition-slow: 300ms;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #0a0a0a;
+      --foreground: #ededed;
+    }
+  }
+
+  body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+
+/* Micro-interactions and animations */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Hover lift effect - cards and buttons */
+  .hover-lift {
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  /* Scale effect - buttons and interactive elements */
+  .hover-scale {
+    transition: transform var(--transition-fast);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+
+  .hover-scale:active {
+    transform: scale(0.98);
+  }
+
+  /* Smooth fade in animation */
+  .fade-in {
+    animation: fadeIn var(--transition-slow) ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Slide in from right - for dropdowns */
+  .slide-in-right {
+    animation: slideInRight var(--transition-base) ease-out;
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Pulse animation - for active status */
+  .pulse-slow {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  /* Smooth focus ring */
+  .focus-ring {
+    transition: box-shadow var(--transition-fast);
+  }
+
+  .focus-ring:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+  }
+
+  /* Button press effect */
+  .active-press:active {
+    transform: scale(0.95);
+  }
+
+  /* Skeleton loading animation */
+  .skeleton {
+    background: linear-gradient(90deg,
+        #f0f0f0 25%,
+        #e0e0e0 50%,
+        #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s ease-in-out infinite;
+  }
+
+  @keyframes loading {
+    0% {
+      background-position: 200% 0;
+    }
+
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* Smooth gradient backgrounds */
+  .gradient-primary {
+    background: linear-gradient(135deg, #3B82F6 0%, #6366F1 100%);
+  }
+
+  .gradient-success {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  }
+
+  .gradient-danger {
+    background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+  }
+}
+
+/* Component-specific styles */
+@layer components {
+
+  /* Consistent card styling */
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700;
+    padding: var(--space-2xl);
+  }
+
+  /* Button base styles */
+  .btn {
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200;
+    @apply hover-scale active-press focus-ring;
+  }
+
+  .btn-primary {
+    @apply btn bg-blue-600 hover:bg-blue-700 text-white shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply btn bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100;
+  }
+
+  .btn-danger {
+    @apply btn bg-red-600 hover:bg-red-700 text-white shadow-lg;
+  }
+
+  /* Input base styles */
+  .input {
+    @apply w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl;
+    @apply focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    @apply dark:bg-gray-700 dark:text-gray-100;
+    @apply transition-all duration-200;
+  }
+}
+
+/* React Flow Custom Node Styles */
+.custom-node {
+  @apply bg-white dark:bg-gray-800 rounded-2xl shadow-lg border-2 border-gray-200 dark:border-gray-700;
+  @apply transition-all duration-200;
+  min-width: 200px;
+  cursor: pointer;
+}
+
+.custom-node:hover {
+  @apply shadow-2xl -translate-y-1;
+}
+
+.custom-node.selected {
+  @apply border-blue-500 shadow-blue-500/50;
+}
+
+.node-header {
+  @apply rounded-t-xl p-4 flex items-center justify-center;
+}
+
+.node-icon {
+  @apply text-white;
+}
+
+.node-body {
+  @apply p-4 space-y-2;
+}
+
+.node-title {
+  @apply text-base font-bold text-gray-900 dark:text-gray-100;
+}
+
+.node-description {
+  @apply text-sm text-gray-600 dark:text-gray-300;
+}
+
+.node-type-badge {
+  @apply absolute -top-2 -right-2 px-3 py-1 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-full text-xs font-semibold text-gray-700 dark:text-gray-300;
+  @apply opacity-0 group-hover:opacity-100 transition-opacity duration-200;
+}
+
+.node-handle {
+  @apply w-3 h-3 bg-blue-500 border-2 border-white dark:border-gray-800;
+  @apply hover:w-4 hover:h-4 transition-all duration-150;
+}
+
+.react-flow__edge-path {
+  stroke-width: 2;
+  stroke: #3b82f6;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #6366f1;
+  stroke-width: 3;
+}
+
+.react-flow__controls {
+  @apply shadow-xl border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden;
+}
+
+.react-flow__controls-button {
+  @apply bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700;
+  @apply hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors;
+}
+
+.react-flow__minimap {
+  @apply bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-xl shadow-xl;
+}
+
