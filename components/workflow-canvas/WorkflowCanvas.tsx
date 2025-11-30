@@ -14,6 +14,7 @@ import ReactFlow, {
     BackgroundVariant,
 } from 'reactflow';
 import { CustomNode } from './nodes/CustomNode';
+import { ConditionNode } from './nodes/ConditionNode';
 import { NODE_TEMPLATES, NodeType, WorkflowNodeData } from '@/types/nodes';
 import 'reactflow/dist/style.css';
 
@@ -27,7 +28,7 @@ import 'reactflow/dist/style.css';
  * - Mini-map for navigation
  */
 
-// All nodes use the CustomNode component
+// Node type mapping - condition uses special diamond shape
 const nodeTypes = {
     'manual': CustomNode,
     'webhook': CustomNode,
@@ -37,6 +38,7 @@ const nodeTypes = {
     'google-calendar': CustomNode,
     'google-docs': CustomNode,
     'gpt': CustomNode,
+    'condition': ConditionNode, // Special diamond shape for branching
     'http-request': CustomNode,
     'set-variable': CustomNode,
 };
