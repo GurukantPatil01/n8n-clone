@@ -1,16 +1,6 @@
 import { redirect } from 'next/navigation';
 import { auth } from '@/lib/auth';
 
-/**
- * EXECUTIONS PAGE
- * 
- * Learning: View workflow execution history
- * - List all executions
- * - Filter by workflow
- * - View execution details
- * - Retry failed executions
- */
-
 export default async function ExecutionsPage() {
     const session = await auth();
 
@@ -19,28 +9,24 @@ export default async function ExecutionsPage() {
     }
 
     return (
-        <div className="p-8 lg:p-12">
-            <div className="max-w-7xl mx-auto space-y-8">
+        <div className="min-h-screen bg-white">
+            <div className="max-w-6xl mx-auto p-8">
                 {/* Header */}
-                <div>
-                    <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-                        Executions
-                    </h1>
-                    <p className="text-gray-600 dark:text-gray-400">
-                        View and manage workflow execution history
-                    </p>
+                <div className="mb-8">
+                    <h1 className="text-3xl font-semibold text-gray-900 mb-2">Executions</h1>
+                    <p className="text-gray-600">View and manage workflow execution history</p>
                 </div>
 
-                {/* Coming Soon */}
-                <div className="card text-center py-16">
-                    <div className="w-20 h-20 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span className="text-4xl">📋</span>
+                {/* Empty State */}
+                <div className="text-center py-20 bg-gray-50 rounded-lg">
+                    <div className="w-16 h-16 mx-auto mb-4 text-gray-400">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-                        Executions Coming Soon
-                    </h2>
-                    <p className="text-gray-600 dark:text-gray-400 max-w-md mx-auto">
-                        This page will show your workflow execution history, including success/failure status, execution time, and detailed logs.
+                    <h3 className="text-xl font-medium text-gray-900 mb-2">No executions yet</h3>
+                    <p className="text-gray-600 mb-6">
+                        Workflow executions will appear here once you run your workflows.
                     </p>
                 </div>
             </div>
