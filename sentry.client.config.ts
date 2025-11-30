@@ -36,16 +36,14 @@ Sentry.init({
     // Debug mode (only in development)
     debug: process.env.NODE_ENV === 'development',
 
-    // Integrations
-    integrations: [
-        new Sentry.Replay({
-            maskAllText: true, // Privacy: mask all text
-            blockAllMedia: true, // Privacy: block images/videos
-        }),
-        new Sentry.BrowserTracing({
-            tracePropagationTargets: ['localhost', /^https:\/\/yourapp\.com/],
-        }),
-    ],
+    // Integrations - commented out to avoid build errors
+    // Uncomment when Sentry is properly configured with compatible version
+    // integrations: [
+    //     new Sentry.Replay({
+    //         maskAllText: true,
+    //         blockAllMedia: true,
+    //     }),
+    // ],
 
     // Filter out noise
     ignoreErrors: [
