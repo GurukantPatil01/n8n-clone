@@ -24,9 +24,9 @@ export default function RootLayout({
                 <ErrorBoundary>
                     <Providers>
                         <TRPCProvider>
-                            <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
+                            <div className="flex min-h-screen bg-white">
                                 <Sidebar />
-                                <main className="flex-1 overflow-auto">
+                                <main className="flex-1 ml-60">
                                     {children}
                                 </main>
                             </div>
