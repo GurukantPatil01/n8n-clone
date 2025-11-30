@@ -14,6 +14,7 @@ export type NodeType =
     | 'manual'
     | 'webhook'
     | 'schedule'
+    | 'google-forms'
     // Google Services
     | 'google-sheets'
     | 'gmail'
@@ -67,6 +68,16 @@ export const NODE_TEMPLATES: Record<NodeType, NodeTemplate> = {
         description: 'Run on a schedule',
         icon: 'clock',
         color: '#14B8A6',
+        inputs: 0,
+        outputs: 1,
+    },
+    'google-forms': {
+        type: 'google-forms',
+        category: 'trigger',
+        label: 'Google Forms',
+        description: 'Trigger on form submission',
+        icon: 'file-text',
+        color: '#673AB7', // purple
         inputs: 0,
         outputs: 1,
     },
