@@ -148,6 +148,7 @@ export default function WorkflowEditorPage({
 
     // Handle config save
     const handleConfigSave = useCallback((nodeId: string, config: any) => {
+        // Update node data in state
         setNodes((nds) =>
             nds.map((node) =>
                 node.id === nodeId
@@ -155,7 +156,16 @@ export default function WorkflowEditorPage({
                     : node
             )
         );
-    }, [setNodes]);
+
+        // Close config panel
+        setShowConfigPanel(false);
+        setSelectedNode(null);
+
+        // Auto-save to database after a short delay
+        setTimeout(() => {
+            handleSave();
+        }, 500);
+    }, [setNodes, handleSave]);
 
     if (isLoading) {
         return (

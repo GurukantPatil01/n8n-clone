@@ -105,7 +105,7 @@ export const CustomNode = memo(({ data, selected }: CustomNodeProps) => {
                 {/* Icon Circle - Centered and prominent */}
                 <div className="flex flex-col items-center gap-2">
                     <div
-                        className="w-12 h-12 rounded-full flex items-center justify-center mb-1 shadow-lg"
+                        className="w-12 h-12 rounded-full flex items-center justify-center mb-1 shadow-lg relative"
                         style={{
                             backgroundColor: data.color || '#6b7280',
                         }}
@@ -113,6 +113,15 @@ export const CustomNode = memo(({ data, selected }: CustomNodeProps) => {
                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             {getIcon()}
                         </svg>
+
+                        {/* Config checkmark badge */}
+                        {data.config && Object.keys(data.config).length > 0 && (
+                            <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center border-2 border-gray-800">
+                                <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                        )}
                     </div>
 
                     {/* Node Label */}
@@ -120,10 +129,14 @@ export const CustomNode = memo(({ data, selected }: CustomNodeProps) => {
                         {data.label}
                     </span>
 
-                    {/* Config indicator */}
-                    {data.config && (
-                        <div className="text-[10px] text-gray-400 mt-0.5">
-                            Configured
+                    {/* Config indicator text */}
+                    {data.config && Object.keys(data.config).length > 0 ? (
+                        <div className="text-[10px] text-green-400 font-medium mt-0.5">
+                            ✓ Configured
+                        </div>
+                    ) : (
+                        <div className="text-[10px] text-gray-500 mt-0.5">
+                            Click to configure
                         </div>
                     )}
                 </div>
