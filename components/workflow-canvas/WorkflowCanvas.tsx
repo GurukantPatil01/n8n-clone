@@ -33,6 +33,7 @@ const nodeTypes = {
     'manual': CustomNode,
     'webhook': CustomNode,
     'schedule': CustomNode,
+    'google-forms': CustomNode,
     'google-sheets': CustomNode,
     'gmail': CustomNode,
     'google-calendar': CustomNode,
