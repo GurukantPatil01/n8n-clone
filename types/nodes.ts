@@ -7,7 +7,7 @@
  * - Configuration types
  */
 
-export type NodeCategory = 'trigger' | 'google' | 'ai' | 'action';
+export type NodeCategory = 'trigger' | 'google' | 'ai' | 'action' | 'logic';
 
 export type NodeType =
     // Triggers
@@ -21,6 +21,8 @@ export type NodeType =
     | 'google-docs'
     // AI
     | 'gpt'
+    // Logic
+    | 'condition'
     // Actions
     | 'http-request'
     | 'set-variable';
@@ -123,6 +125,18 @@ export const NODE_TEMPLATES: Record<NodeType, NodeTemplate> = {
         outputs: 1,
     },
 
+    // Logic
+    'condition': {
+        type: 'condition',
+        category: 'logic',
+        label: 'Condition',
+        description: 'Branch based on condition',
+        icon: 'git-branch',
+        color: '#F97316', // orange-500
+        inputs: 1,
+        outputs: 2, // TRUE and FALSE outputs
+    },
+
     // Actions
     'http-request': {
         type: 'http-request',
@@ -176,11 +190,18 @@ export interface HTTPRequestConfig {
     body?: string;
 }
 
+export interface ConditionConfig {
+    leftValue: string;
+    operator: 'equals' | 'notEquals' | 'greaterThan' | 'greaterThanOrEqual' | 'lessThan' | 'lessThanOrEqual' | 'contains';
+    rightValue: string;
+}
+
 export type NodeConfig =
     | GoogleSheetsConfig
     | GmailConfig
     | GPTConfig
     | HTTPRequestConfig
+    | ConditionConfig
     | Record<string, any>;
 
 export interface WorkflowNodeData {

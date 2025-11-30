@@ -1,0 +1,52 @@
+
+> n8n-clone@0.1.0 build
+> next build
+
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/gurukantpatil/package-lock.json as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles: 
+   * /Users/gurukantpatil/Desktop/n8n-clone/package-lock.json
+
+   ▲ Next.js 15.5.6
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 5.5s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/15) ...
+   Generating static pages (3/15) 
+   Generating static pages (7/15) 
+   Generating static pages (11/15) 
+ ✓ Generating static pages (15/15)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ƒ /                                      139 B         102 kB
+├ ○ /_not-found                            994 B         103 kB
+├ ƒ /api/auth/[...nextauth]                139 B         102 kB
+├ ƒ /api/stripe/checkout                   139 B         102 kB
+├ ƒ /api/stripe/portal                     139 B         102 kB
+├ ƒ /api/trpc/[trpc]                       139 B         102 kB
+├ ƒ /billing                             1.63 kB         107 kB
+├ ƒ /executions                            139 B         102 kB
+├ ○ /login                               1.69 kB         110 kB
+├ ○ /pricing                             2.37 kB         108 kB
+├ ○ /register                             2.1 kB         111 kB
+├ ƒ /settings                              139 B         102 kB
+├ ○ /test-error                          2.05 kB         107 kB
+├ ○ /test-workflows                      2.36 kB         126 kB
+├ ○ /workflows                           3.26 kB         130 kB
+└ ƒ /workflows/[id]                      88.4 kB         212 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/255-cf2e1d3491ac955b.js       45.7 kB
+  ├ chunks/4bd1b696-c023c6e3521b1417.js  54.2 kB
+  └ other shared chunks (total)          1.94 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

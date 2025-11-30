@@ -427,6 +427,39 @@ export default function WorkflowEditorPage({
                                 </div>
                             </div>
 
+                            {/* Logic Section */}
+                            <div>
+                                <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+                                    LOGIC
+                                </h3>
+                                <div className="space-y-2">
+                                    {Object.values(NODE_TEMPLATES)
+                                        .filter(node => node.category === 'logic')
+                                        .map(node => (
+                                            <div
+                                                key={node.type}
+                                                draggable
+                                                onDragStart={(e) => {
+                                                    e.dataTransfer.setData('application/reactflow', node.type);
+                                                    e.dataTransfer.effectAllowed = 'move';
+                                                }}
+                                                className="p-4 rounded-lg cursor-move transition-all duration-200 hover:scale-[1.02]"
+                                                style={{ backgroundColor: node.color }}
+                                            >
+                                                <div className="flex items-center gap-3 mb-2">
+                                                    <div className="w-6 h-6 text-white">
+                                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                                                        </svg>
+                                                    </div>
+                                                    <h4 className="font-semibold text-white">{node.label}</h4>
+                                                </div>
+                                                <p className="text-sm text-white/80">{node.description}</p>
+                                            </div>
+                                        ))}
+                                </div>
+                            </div>
+
                             {/* Actions Section */}
                             <div>
                                 <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
