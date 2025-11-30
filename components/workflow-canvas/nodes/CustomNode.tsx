@@ -5,14 +5,14 @@ import { Handle, Position, NodeProps } from 'reactflow';
 import { WorkflowNodeData } from '@/types/nodes';
 
 /**
- * CUSTOM NODE - n8n style
+ * CUSTOM NODE - Minimal Square Design
  * 
- * Features:
- * - Smooth rounded edges
- * - Large centered icon
- * - Clean minimal design
+ * Simple square boxes matching reference video:
+ * - Small square container
+ * - Icon at top
+ * - Label below
  * - Subtle border
- * - No sharp corners!
+ * - White/light background
  */
 
 interface CustomNodeProps extends NodeProps {
@@ -56,26 +56,6 @@ export const CustomNode = memo(({ data, selected }: CustomNodeProps) => {
         }
     };
 
-    // Status colors
-    const getStatusColor = () => {
-        switch (data.executionState) {
-            case 'running':
-                return 'bg-yellow-500';
-            case 'success':
-                return 'bg-green-500';
-            case 'error':
-                return 'bg-red-500';
-            default:
-                return 'bg-gray-600';
-        }
-    };
-
-    // Get lighter background color
-    const getLightColor = (baseColor: string) => {
-        // Add transparency to create lighter version
-        return baseColor + '20'; // 20 is 12.5% opacity in hex
-    };
-
     return (
         <div className="relative">
             {/* Input Handle */}
@@ -83,78 +63,50 @@ export const CustomNode = memo(({ data, selected }: CustomNodeProps) => {
                 <Handle
                     type="target"
                     position={Position.Left}
-                    className="!w-2.5 !h-2.5 !bg-gray-400 !border-2 !border-gray-700 !rounded-full"
-                    style={{ left: '-7px' }}
+                    className="!w-2 !h-2 !bg-gray-400 !border-2 !border-white !rounded-full"
+                    style={{ left: '-5px' }}
                 />
             )}
 
-            {/* Node Container - Smooth rounded design */}
+            {/* Node Container - Simple Square Box */}
             <div
                 className={`
-                    relative min-w-[140px] px-4 py-3
-                    bg-gray-800/90
-                    rounded-2xl
-                    border-2 transition-all duration-200
-                    backdrop-blur-sm
+                    relative w-24 h-24
+                    bg-white
+                    rounded-lg
+                    border-2
+                    flex flex-col items-center justify-center
+                    transition-all duration-200
                     ${selected
-                        ? 'border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.3)]'
-                        : 'border-gray-600/50 hover:border-gray-500/70'
+                        ? 'border-blue-500 shadow-lg'
+                        : 'border-gray-300 hover:border-gray-400 shadow-sm'
                     }
                 `}
             >
-                {/* Icon Circle - Centered and prominent */}
-                <div className="flex flex-col items-center gap-2">
-                    <div
-                        className="w-12 h-12 rounded-full flex items-center justify-center mb-1 shadow-lg relative"
-                        style={{
-                            backgroundColor: data.color || '#6b7280',
-                        }}
+                {/* Icon */}
+                <div className="mb-1">
+                    <svg
+                        className="w-8 h-8"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        style={{ color: data.color || '#6b7280' }}
                     >
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            {getIcon()}
-                        </svg>
-
-                        {/* Config checkmark badge */}
-                        {data.config && Object.keys(data.config).length > 0 && (
-                            <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center border-2 border-gray-800">
-                                <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                </svg>
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Node Label */}
-                    <span className="text-sm font-medium text-gray-100 text-center leading-tight whitespace-nowrap">
-                        {data.label}
-                    </span>
-
-                    {/* Config indicator text */}
-                    {data.config && Object.keys(data.config).length > 0 ? (
-                        <div className="text-[10px] text-green-400 font-medium mt-0.5">
-                            ✓ Configured
-                        </div>
-                    ) : (
-                        <div className="text-[10px] text-gray-500 mt-0.5">
-                            Click to configure
-                        </div>
-                    )}
+                        {getIcon()}
+                    </svg>
                 </div>
 
-                {/* Execution Status Indicator - Bottom right */}
-                {data.executionState && data.executionState !== 'idle' && (
-                    <div className="absolute -bottom-1 -right-1">
-                        <div className={`w-5 h-5 rounded-full ${getStatusColor()} border-2 border-gray-800 flex items-center justify-center ${data.executionState === 'running' ? 'animate-pulse' : ''
-                            }`}>
-                            {data.executionState === 'success' && (
-                                <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                </svg>
-                            )}
-                            {data.executionState === 'error' && (
-                                <span className="text-white text-xs font-bold">!</span>
-                            )}
-                        </div>
+                {/* Label Text Below Icon */}
+                <span className="text-[10px] font-medium text-gray-700 text-center px-1 leading-tight">
+                    {data.label}
+                </span>
+
+                {/* Config checkmark badge - smaller */}
+                {data.config && Object.keys(data.config).length > 0 && (
+                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center border border-white">
+                        <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 13l4 4L19 7" />
+                        </svg>
                     </div>
                 )}
             </div>
@@ -164,8 +116,8 @@ export const CustomNode = memo(({ data, selected }: CustomNodeProps) => {
                 <Handle
                     type="source"
                     position={Position.Right}
-                    className="!w-2.5 !h-2.5 !bg-gray-400 !border-2 !border-gray-700 !rounded-full"
-                    style={{ right: '-7px' }}
+                    className="!w-2 !h-2 !bg-gray-400 !border-2 !border-white !rounded-full"
+                    style={{ right: '-5px' }}
                 />
             )}
         </div>
