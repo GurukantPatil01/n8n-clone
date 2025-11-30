@@ -58,7 +58,7 @@ export function WorkflowCanvas({
     onEdgesChange: onEdgesChangeProp,
     onNodeClick: onNodeClickProp,
 }: WorkflowCanvasProps) {
-    const [nodes, setNodes, onNodesChange] = useNodesState<Node<WorkflowNodeData>>(initialNodes);
+    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
 
