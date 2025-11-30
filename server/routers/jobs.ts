@@ -22,7 +22,7 @@ export const jobsRouter = router({
         .input(
             z.object({
                 workflowId: z.number(),
-                input: z.record(z.any()).optional(),
+                input: z.record(z.string(), z.any()).optional(),
             })
         )
         .mutation(async ({ input, ctx }) => {
@@ -30,7 +30,7 @@ export const jobsRouter = router({
                 // Execute directly (fallback when Redis not available)
                 const result = await executeWorkflowDirect({
                     workflowId: input.workflowId,
-                    userId: ctx.user.id,
+                    userId: ctx.user.id!,
                     trigger: 'manual',
                     input: input.input,
                 });
