@@ -313,8 +313,5 @@ n8n-clone/
 
 - Check the official documentation for each technology
 - Look at the reference video: [Build n8n Clone Tutorial](https://youtu.be/ED2H_y6dmC8)
-- Review the code comments - they explain the "why" behind decisions
 
 ---
-
-**Remember**: Building this project is about **learning the concepts**, not just getting it to work. Take your time, understand each piece, and you'll gain valuable skills for building complex web applications! 🎉
