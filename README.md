@@ -307,11 +307,4 @@ n8n-clone/
 - Ensure database is accessible
 - Try dropping tables and re-running migrations (in development only!)
 
----
 
-## 📞 Need Help?
-
-- Check the official documentation for each technology
-- Look at the reference video: [Build n8n Clone Tutorial](https://youtu.be/ED2H_y6dmC8)
-
----
