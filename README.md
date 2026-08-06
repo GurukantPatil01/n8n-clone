@@ -2,14 +2,6 @@
 
 > **Learning Goal**: Understand how to build a workflow automation tool like n8n/Zapier from scratch
 
-## 📚 What You'll Learn
-
-This project teaches you how to build a **visual workflow automation tool** where users can:
-- Create workflows by connecting nodes (like n8n/Zapier)
-- Execute automated tasks based on triggers
-- Transform data between different services
-- Build complex automation logic visually
-
 ## 🎯 Project Overview
 
 ### What is n8n?
